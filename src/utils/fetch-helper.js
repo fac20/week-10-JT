@@ -1,4 +1,4 @@
-export const API_ADDRESS = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
+export const API_BASE = "https://www.thecocktaildb.com/api/json/v1/1/random.php";
 
 export const fetchHelper = (url) => {
   return fetch(url)
