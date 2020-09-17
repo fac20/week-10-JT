@@ -1,48 +1,29 @@
 import React from "react";
 import "./style.css";
 import { uniqueIngredientsArray } from "../../utils/ingredientsArray";
+import { arrayScrambler } from "../../utils/array-scrambler";
 
-export const DrinksButtons = (props) => {
+export const DrinksButtons = ({drinksIngredients, selected,setSelected}) => {
   //true drink ingredients
-  const drinkIngredients = props.drinksIngredients;
+  const [buttonsArray, setButtonsArray] = React.useState([]);
 
-
-  
   //array scrambling function from SO!
-  const arrayScrambler = (array) => {
-    var currentIndex = array.length,
-      temporaryValue,
-      randomIndex;
 
-    // While there remain elements to shuffle...
-    while (0 !== currentIndex) {
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex -= 1;
+  React.useEffect((goAgain) => {
+    const scrambledIngredientsArray = arrayScrambler(uniqueIngredientsArray);
 
-      // And swap it with the current element.
-      temporaryValue = array[currentIndex];
-      array[currentIndex] = array[randomIndex];
-      array[randomIndex] = temporaryValue;
+    let cleanedScrambledArray = [
+      ...scrambledIngredientsArray.filter((x) => drinksIngredients.indexOf(x) == -1),
+    ];
+
+    //create list for buttons with mixed up list
+    for (let i = drinksIngredients.length; i < 9; i++) {
+      drinksIngredients.push(cleanedScrambledArray[i]);
     }
 
-    return array;
-  };
-
-  //scramble big list
-  const scrambledIngredientsArray = arrayScrambler(uniqueIngredientsArray);
-
-  let cleanedScrambledArray = [
-    ...scrambledIngredientsArray.filter((x) => drinkIngredients.indexOf(x) == -1),
-  ];
-
-  //create list for buttons with mixed up list
-  for (let i = drinkIngredients.length; i < 9; i++) {
-    drinkIngredients.push(cleanedScrambledArray[i]);
-  }
-
-  //scramble list again so true ingredients are not always first
-  const buttonsArray = arrayScrambler(drinkIngredients);
+    //scramble list again so true ingredients are not always first
+    setButtonsArray(arrayScrambler(drinksIngredients));
+  },[drinksIngredients]);
 
   console.log(buttonsArray);
 
@@ -51,7 +32,9 @@ export const DrinksButtons = (props) => {
       <ul>
         {buttonsArray.map((ingredient) => (
           <li key={ingredient}>
-            <button onClick={e => props.setSelected([...props.selected,e.target.textContent])}>{ingredient}</button>
+            <button onClick={(e) => setSelected([...selected, e.target.textContent])}>
+              {ingredient}
+            </button>
           </li>
         ))}
       </ul>
@@ -59,18 +42,6 @@ export const DrinksButtons = (props) => {
   );
 };
 
-{/* <label htmlFor="max-price">
-Max price
-<input
-  type="range"
-  id="max-price"
-  min="0.5"
-  max="9"
-  step="0.25"
-  value={priceFilter[1]}
-  onChange={e => setPriceFilter([priceFilter[0], e.target.value])}
-/>
-</label> */}
 
 //make api call
 // map through response and create ingredients array [rum, vodka, lemon]
