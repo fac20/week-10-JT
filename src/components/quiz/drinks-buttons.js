@@ -3,13 +3,13 @@ import "./style.css";
 import { uniqueIngredientsArray } from "../../utils/ingredientsArray";
 import { arrayScrambler } from "../../utils/array-scrambler";
 
-export const DrinksButtons = ({drinksIngredients, selected,setSelected}) => {
+export const DrinksButtons = ({drinksIngredients, selected,setSelected,goAgain}) => {
   //true drink ingredients
   const [buttonsArray, setButtonsArray] = React.useState([]);
 
   //array scrambling function from SO!
 
-  React.useEffect((goAgain) => {
+  React.useEffect(() => {
     const scrambledIngredientsArray = arrayScrambler(uniqueIngredientsArray);
 
     let cleanedScrambledArray = [
@@ -23,7 +23,7 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected}) => {
 
     //scramble list again so true ingredients are not always first
     setButtonsArray(arrayScrambler(drinksIngredients));
-  },[drinksIngredients]);
+  },[]);
 
   console.log(buttonsArray);
 
@@ -31,10 +31,9 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected}) => {
     <>
       <ul>
         {buttonsArray.map((ingredient) => (
-          <li key={ingredient}>
-            <button onClick={(e) => setSelected([...selected, e.target.textContent])}>
-              {ingredient}
-            </button>
+          <li key={`${ingredient} key`}>
+            <label htmlFor={ingredient}>{ingredient}</label>
+            <input id={ingredient} name={ingredient} type="checkbox" onChange={(e) => setSelected({...selected, [e.target.name]: e.target.checked })}></input>
           </li>
         ))}
       </ul>
@@ -43,6 +42,11 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected}) => {
 };
 
 
+{/* <button onClick={(e) => setSelected([...selected, e.target.textContent])}>
+              {ingredient}
+            </button> */}
+// onChange={event => setSelect({…selected, [event.target.name]: event.target.checked })} 
+// selected["orange”] 
 //make api call
 // map through response and create ingredients array [rum, vodka, lemon]
 //have a big array of drink options  [ gin, sour mix, pineapple juice, rum, vodka, lemon]

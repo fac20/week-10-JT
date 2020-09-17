@@ -2,7 +2,6 @@
 import React from "react";
 
 export const Success = ({ success, setSuccess, setGoAgain , goAgain}) => {
-  //
   return (
     <>
       <h1>ALL CORRECT!</h1>

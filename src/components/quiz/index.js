@@ -5,21 +5,25 @@ import "./style.css";
 import {Success} from "../answer/success/index"
 import {Fail} from "../answer/fail/index"
 
-export const QuizPage = () => {
+export const QuizPage = ({goAgain,setGoAgain}) => {
 
   const [drinkData, setDrinkData] = React.useState(null);
-  const [selected, setSelected] = React.useState([]);
+  const [selected, setSelected] = React.useState({});
   const [success,setSuccess] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
-  const [goAgain, setGoAgain]= React.useState(false);
+//   const [goAgain, setGoAgain]= React.useState(false);
   
   React.useEffect(() => {
    
     const url = `${API_BASE}`;
     getDrink(url).then((drink) => setDrinkData(drink.drinks[0]));
+
+
   }, [goAgain]);
+  
+  
   if (!drinkData) {
-    return <h3>...Bartender is mixing ya bevvy...</h3>;
+    return <h3>...React is mixing ya bevvy...</h3>;
   }
 
   console.log(drinkData)
@@ -52,12 +56,24 @@ export const QuizPage = () => {
   e.preventDefault()
   console.log(selected, typeof selected);
 
+  let picked = [];
+  const checking = (selected) => {
+    
+    Object.entries(selected).forEach(([key,value])=> {
+        if(value) picked.push(key)
+    })
+    console.log(picked);
+  }
+
+  checking(selected);
+
   let counter = 0;
 
-  selected.forEach(el => {if(cleanedIngredientsArray.includes(el))counter++;})
+  picked.forEach(el => {if(cleanedIngredientsArray.includes(el))counter++;})
 
-  console.log(counter);
-setFailed(true);
+  console.log("score: ", counter);
+  
+  (counter ===cleanedIngredientsArray.length) ? setSuccess(true) : setFailed(true);
   }
 
   
@@ -66,8 +82,7 @@ setFailed(true);
       <img className="drink-img" src={strDrinkThumb} alt="" />
       <h2>{strDrink}</h2>
       <p>{ingredientsArray.length}</p>
-      {!success && !failed ? <p>Number selected: {selected.length}</p>: null}
-      {drinkData && !success && !failed ? <DrinksButtons drinksIngredients={cleanedIngredientsArray} selected={selected} setSelected={setSelected}></DrinksButtons> : null}
+      {drinkData && !success && !failed ? <DrinksButtons goAgain={goAgain} drinksIngredients={cleanedIngredientsArray} selected={selected} setSelected={setSelected} ></DrinksButtons> : null}
       {drinkData && !success && !failed  ? <button onClick={handleSubmit}>Submit</button> : null}
       {success ? <Success success={success} setSuccess={setSuccess} setGoAgain={setGoAgain} goAgain={goAgain}></Success> : null}
       {failed ? <Fail realIngredients={cleanedIngredientsArray} selected={selected} fail={failed} setFailed={setFailed} setGoAgain={setGoAgain} goAgain={goAgain}></Fail> : null }
