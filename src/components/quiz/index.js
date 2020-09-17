@@ -1,5 +1,5 @@
 import React from "react";
-// import DrinksButtons from "./drinks-buttons";
+import {DrinksButtons} from "./drinks-buttons";
 import { fetchHelper as getDrink, API_BASE } from "../../utils/fetch-helper";
 import "./style.css";
 
@@ -35,6 +35,7 @@ export const QuizPage = () => {
     drinkData.strIngredient15,
   ].filter((ing) => ing != null);
 
+  console.log(ingredientsArray)
 
   const {strDrink, strDrinkThumb } = drinkData;
 
@@ -43,6 +44,7 @@ export const QuizPage = () => {
       <img className="drink-img" src={strDrinkThumb} alt="" />
       <h2>{strDrink}</h2>
       <p>{ingredientsArray.length}</p>
+      {drinkData ? <DrinksButtons drinksIngredients={ingredientsArray}></DrinksButtons> : null}
     </>
   );
 };
