@@ -5,7 +5,7 @@ export const Fail = ({ fail, setFailed, selected, realIngredients, setGoAgain,go
   return (
     <>
       <h1> NOT QUITE!</h1>
-      <img className="fail-image" src="https://placekitten.com/200/300" alt="" />
+      <img className="fail-image" src="https://media.giphy.com/media/KHJw9NRFDMom487qyo/giphy.gif" alt="" />
       <p>You chose: {Object.keys(selected).map(item=> item+", ")}</p>
       <p>The real ingredients were: {realIngredients.map(item=> item+", ")}</p>
       <button

@@ -46,8 +46,7 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected,goAgain})
               {ingredient}
             </button> */}
 // onChange={event => setSelect({…selected, [event.target.name]: event.target.checked })} 
-// selected["orange”] 
-//make api call
+
 // map through response and create ingredients array [rum, vodka, lemon]
 //have a big array of drink options  [ gin, sour mix, pineapple juice, rum, vodka, lemon]
 //have an empty array of 9 buttons
