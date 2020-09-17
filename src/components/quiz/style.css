@@ -9,6 +9,10 @@
     color: white;
 }
 
+img {
+    border: double white 5px;
+}
+
 .drink-img{
     width: 18rem;
     height: 18rem;
@@ -23,16 +27,21 @@ label, input {
     margin-bottom: 1rem;
 }
 
+input:checked + label{
+        background-color: rgb(28, 28, 124);
+}
+
 label {
     border:white solid 1px;
     border-radius: 5px;
-    padding: 0.1rem;
+    padding: 0.2rem;
+    margin-left:0.1rem;
   
 }
 label:hover {
     -webkit-animation: vibrate-1 0.3s linear infinite both;
     animation: vibrate-1 0.3s linear infinite both;
-    background-color: blue;
+    background-color: rgb(28, 28, 124);
 }
 
 

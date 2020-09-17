@@ -32,8 +32,8 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected,goAgain})
       <ul>
         {buttonsArray.map((ingredient) => (
           <li key={`${ingredient} key`}>
-            <label htmlFor={ingredient}>{ingredient}</label>
             <input id={ingredient} name={ingredient} type="checkbox" onChange={(e) => setSelected({...selected, [e.target.name]: e.target.checked })}></input>
+            <label htmlFor={ingredient}>{ingredient}</label>
           </li>
         ))}
       </ul>

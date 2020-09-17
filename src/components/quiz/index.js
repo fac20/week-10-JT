@@ -13,6 +13,7 @@ export const QuizPage = ({ goAgain, setGoAgain }) => {
   //   const [goAgain, setGoAgain]= React.useState(false);
 
   React.useEffect(() => {
+      setDrinkData(null)
     const url = `${API_BASE}`;
     getDrink(url).then((drink) => setDrinkData(drink.drinks[0]));
   }, [goAgain]);
