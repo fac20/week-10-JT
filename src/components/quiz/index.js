@@ -6,7 +6,8 @@ import "./style.css";
 export const QuizPage = () => {
 
   const [drinkData, setDrinkData] = React.useState(null);
-
+  const [selected, setSelected] = React.useState([])
+  
   React.useEffect(() => {
     const url = `${API_BASE}`;
     getDrink(url).then((drink) => setDrinkData(drink.drinks[0]));
@@ -44,7 +45,7 @@ export const QuizPage = () => {
       <img className="drink-img" src={strDrinkThumb} alt="" />
       <h2>{strDrink}</h2>
       <p>{ingredientsArray.length}</p>
-      {drinkData ? <DrinksButtons drinksIngredients={ingredientsArray}></DrinksButtons> : null}
+      {drinkData ? <DrinksButtons drinksIngredients={ingredientsArray} selected={selected} setSelected={setSelected}></DrinksButtons> : null}
     </>
   );
 };
@@ -54,3 +55,16 @@ export const QuizPage = () => {
 //p tag or whatever for number of ingredients
 //space for buttons, always more than no of ingredients
 //submit button to match choices against fetched list of ingredients
+
+{/* <label htmlFor="max-price">
+Max price
+<input
+  type="range"
+  id="max-price"
+  min="0.5"
+  max="9"
+  step="0.25"
+  value={priceFilter[1]}
+  onChange={e => setPriceFilter([priceFilter[0], e.target.value])}
+/>
+</label> */}

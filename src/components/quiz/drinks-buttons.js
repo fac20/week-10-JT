@@ -6,6 +6,8 @@ export const DrinksButtons = (props) => {
   //true drink ingredients
   const drinkIngredients = props.drinksIngredients;
 
+
+  
   //array scrambling function from SO!
   const arrayScrambler = (array) => {
     var currentIndex = array.length,
@@ -49,13 +51,26 @@ export const DrinksButtons = (props) => {
       <ul>
         {buttonsArray.map((ingredient) => (
           <li key={ingredient}>
-            <button>{ingredient}</button>
+            <button onClick={e => props.setSelected([...props.selected,e.target.textContent])}>{ingredient}</button>
           </li>
         ))}
       </ul>
     </>
   );
 };
+
+{/* <label htmlFor="max-price">
+Max price
+<input
+  type="range"
+  id="max-price"
+  min="0.5"
+  max="9"
+  step="0.25"
+  value={priceFilter[1]}
+  onChange={e => setPriceFilter([priceFilter[0], e.target.value])}
+/>
+</label> */}
 
 //make api call
 // map through response and create ingredients array [rum, vodka, lemon]
