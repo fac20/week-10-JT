@@ -4,23 +4,27 @@ import { uniqueIngredientsArray } from "../../utils/ingredientsArray";
 import { arrayScrambler } from "../../utils/array-scrambler";
 
 export const DrinksButtons = ({drinksIngredients, selected,setSelected,goAgain}) => {
-  //true drink ingredients
+  //make empty array to hold final selection of mixed buttons
   const [buttonsArray, setButtonsArray] = React.useState([]);
 
   //array scrambling function from SO!
   React.useEffect(() => {
+    //scrambles our massive array of ingredients that we wrote
     const scrambledIngredientsArray = arrayScrambler(uniqueIngredientsArray);
 
+    //drop the real ingredients into an array with all the options
+    //filter out all the duplicates 
+    //now we have a new array with a bunch of fake ingredients that don't dupe the reeal ones
     let cleanedScrambledArray = [
       ...scrambledIngredientsArray.filter((x) => drinksIngredients.indexOf(x) == -1),
     ];
 
-    //create list for buttons with mixed up list
+    //add these fakes to the real ingredients
     for (let i = drinksIngredients.length; i < 9; i++) {
       drinksIngredients.push(cleanedScrambledArray[i]);
     }
 
-    //scramble list again so true ingredients are not always first
+    //scramble list again so true ingredients are not always first in the button list
     setButtonsArray(arrayScrambler(drinksIngredients));
   },[]);
 
