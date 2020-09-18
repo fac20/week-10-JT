@@ -8,7 +8,6 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected,goAgain})
   const [buttonsArray, setButtonsArray] = React.useState([]);
 
   //array scrambling function from SO!
-
   React.useEffect(() => {
     const scrambledIngredientsArray = arrayScrambler(uniqueIngredientsArray);
 
@@ -24,8 +23,6 @@ export const DrinksButtons = ({drinksIngredients, selected,setSelected,goAgain})
     //scramble list again so true ingredients are not always first
     setButtonsArray(arrayScrambler(drinksIngredients));
   },[]);
-
-  console.log(buttonsArray);
 
   return (
     <>
