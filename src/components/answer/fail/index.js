@@ -9,7 +9,7 @@ export const Fail = ({ fail, setFailed, selected, realIngredients, setGoAgain, g
       <h1> NOT QUITE!</h1>
       <img
         className="fail-image"
-        src="https://media.giphy.com/media/KHJw9NRFDMom487qyo/giphy.gif"
+        src="https://media.giphy.com/media/KHJw9NRFDMom487qyo/giphy-downsized.gif"
         alt=""
       />
       <p>You chose: {outputFormatter(Object.keys(selected))}</p>

@@ -10,11 +10,11 @@ export const QuizPage = () => {
   const [selected, setSelected] = React.useState({});
   const [success, setSuccess] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
-    const [goAgain, setGoAgain]= React.useState(false);
+  const [goAgain, setGoAgain] = React.useState(false);
 
   React.useEffect(() => {
-      setDrinkData(null)
-      setSelected({});
+    setDrinkData(null);
+    setSelected({});
     const url = `${API_BASE}`;
     getDrink(url).then((drink) => setDrinkData(drink.drinks[0]));
   }, [goAgain]);
@@ -54,7 +54,7 @@ export const QuizPage = () => {
     console.log(selected, typeof selected);
 
     let picked = [];
-    let pickedAmount = Object.keys(selected).length
+    let pickedAmount = Object.keys(selected).length;
     const checking = (selected) => {
       Object.entries(selected).forEach(([key, value]) => {
         if (value) picked.push(key);
@@ -70,11 +70,13 @@ export const QuizPage = () => {
       if (cleanedIngredientsArray.includes(el)) counter++;
     });
 
-    counter === cleanedIngredientsArray.length && pickedAmount === cleanedIngredientsArray.length ? setSuccess(true) : setFailed(true);
+    counter === cleanedIngredientsArray.length && pickedAmount === cleanedIngredientsArray.length
+      ? setSuccess(true)
+      : setFailed(true);
   };
 
-  //this is a complex condition so has been refactored out 
-const shouldShowQuiz = drinkData && !success && !failed;
+  //this is a complex condition so has been refactored out
+  const shouldShowQuiz = drinkData && !success && !failed;
 
   return (
     <>
@@ -82,7 +84,7 @@ const shouldShowQuiz = drinkData && !success && !failed;
         <h1>You have been served!</h1>
         <img className="drink-img" src={strDrinkThumb} alt="" />
         <h2>{strDrink}</h2>
-        <p>You need to select {ingredientsArray.length} ingredients!</p>
+        <p>You need to select {cleanedIngredientsArray.length} ingredients!</p>
         {shouldShowQuiz ? (
           <DrinksButtons
             goAgain={goAgain}
@@ -90,7 +92,11 @@ const shouldShowQuiz = drinkData && !success && !failed;
             selected={selected}
             setSelected={setSelected}></DrinksButtons>
         ) : null}
-        {shouldShowQuiz ? <button className="submit-button" onClick={handleSubmit}>Submit</button> : null}
+        {shouldShowQuiz ? (
+          <button className="submit-button" onClick={handleSubmit}>
+            Submit
+          </button>
+        ) : null}
         {success ? (
           <Success
             success={success}
