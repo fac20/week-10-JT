@@ -70,8 +70,6 @@ export const QuizPage = () => {
       if (cleanedIngredientsArray.includes(el)) counter++;
     });
 
-    console.log("score: ", counter);
-
     counter === cleanedIngredientsArray.length && pickedAmount === cleanedIngredientsArray.length ? setSuccess(true) : setFailed(true);
   };
 
