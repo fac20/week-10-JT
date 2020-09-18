@@ -54,7 +54,6 @@ export const QuizPage = () => {
     console.log(selected, typeof selected);
 
     let picked = [];
-    let pickedAmount = Object.keys(selected).length;
     const checking = (selected) => {
       Object.entries(selected).forEach(([key, value]) => {
         if (value) picked.push(key);
@@ -63,7 +62,8 @@ export const QuizPage = () => {
     };
 
     checking(selected);
-
+    setSelected(picked);
+    
     let counter = 0;
 
     picked.forEach((el) => {

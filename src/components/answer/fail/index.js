@@ -3,7 +3,7 @@ import React from "react";
 import {outputFormatter} from "../../../utils/output-formatter"
 
 export const Fail = ({ fail, setFailed, selected, realIngredients, setGoAgain, goAgain }) => {
-  
+    
   return (
     <>
       <h1> NOT QUITE!</h1>
@@ -12,7 +12,7 @@ export const Fail = ({ fail, setFailed, selected, realIngredients, setGoAgain, g
         src="https://media.giphy.com/media/KHJw9NRFDMom487qyo/giphy-downsized.gif"
         alt=""
       />
-      <p>You chose: {outputFormatter(Object.keys(selected))}</p>
+      <p>You chose: {outputFormatter(selected)}</p>
       <p>The real ingredients were: {outputFormatter(realIngredients)}</p>
       <button
         onClick={() => {
