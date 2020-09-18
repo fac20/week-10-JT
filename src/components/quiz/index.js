@@ -75,6 +75,9 @@ export const QuizPage = ({ goAgain, setGoAgain }) => {
     counter === cleanedIngredientsArray.length && pickedAmount === cleanedIngredientsArray.length ? setSuccess(true) : setFailed(true);
   };
 
+  //this is a complex condition so has been refactored out 
+const shouldShowQuiz = drinkData && !success && !failed;
+
   return (
     <>
       <div className="quiz">
@@ -82,14 +85,14 @@ export const QuizPage = ({ goAgain, setGoAgain }) => {
         <img className="drink-img" src={strDrinkThumb} alt="" />
         <h2>{strDrink}</h2>
         <p>You need to select {ingredientsArray.length} ingredients!</p>
-        {drinkData && !success && !failed ? (
+        {shouldShowQuiz ? (
           <DrinksButtons
             goAgain={goAgain}
             drinksIngredients={cleanedIngredientsArray}
             selected={selected}
             setSelected={setSelected}></DrinksButtons>
         ) : null}
-        {drinkData && !success && !failed ? <button className="submit-button" onClick={handleSubmit}>Submit</button> : null}
+        {shouldShowQuiz ? <button className="submit-button" onClick={handleSubmit}>Submit</button> : null}
         {success ? (
           <Success
             success={success}
