@@ -70,7 +70,7 @@ export const QuizPage = () => {
       if (cleanedIngredientsArray.includes(el)) counter++;
     });
 
-    counter === cleanedIngredientsArray.length && pickedAmount === cleanedIngredientsArray.length
+    counter === cleanedIngredientsArray.length && picked.length === cleanedIngredientsArray.length
       ? setSuccess(true)
       : setFailed(true);
   };
