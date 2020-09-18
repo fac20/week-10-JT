@@ -6,13 +6,15 @@ import {QuizPage} from "./components/quiz/index"
 
 function App() {
 const [landing, setLanding] = React.useState(true)
-const [goAgain, setGoAgain]= React.useState(false);
-
   return (
     <>
-      {landing ? <LandingPage landing={landing} setLanding={setLanding}></LandingPage> : <QuizPage goAgain={goAgain} setGoAgain={setGoAgain} />}
+      {landing ? <LandingPage landing={landing} setLanding={setLanding}></LandingPage> : <QuizPage />}
     </>
   );
 }
 
 export default App;
+
+
+
+

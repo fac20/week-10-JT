@@ -11,7 +11,7 @@ const ingredientsArray = [
     "Pineapple Juice",
     "Orange Juice",
     "Sweet and Sour",
-    "demerara Sugar",
+    "Demerara Sugar",
     "Cachaca",
     "Vodka",
     "Kahlua",
