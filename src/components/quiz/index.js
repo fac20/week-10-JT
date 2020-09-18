@@ -5,12 +5,12 @@ import "./style.css";
 import { Success } from "../answer/success/index";
 import { Fail } from "../answer/fail/index";
 
-export const QuizPage = ({ goAgain, setGoAgain }) => {
+export const QuizPage = () => {
   const [drinkData, setDrinkData] = React.useState(null);
   const [selected, setSelected] = React.useState({});
   const [success, setSuccess] = React.useState(false);
   const [failed, setFailed] = React.useState(false);
-  //   const [goAgain, setGoAgain]= React.useState(false);
+    const [goAgain, setGoAgain]= React.useState(false);
 
   React.useEffect(() => {
       setDrinkData(null)
